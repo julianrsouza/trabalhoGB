@@ -4,6 +4,13 @@ import numpy as np
 import pickle
 from sklearn.preprocessing import StandardScaler
 
+# Importar funções de gráficos do arquivo graphicgenerator.py
+from graphicgenerator import (
+    plot_survival_by_class,
+    plot_survival_by_sex,
+    plot_class_vs_embarked
+)
+
 # Carregar o modelo treinado
 with open('model/titanic_model.pkl', 'rb') as file:
     model = pickle.load(file)
@@ -57,11 +64,32 @@ def predict_survival(input_data):
 st.title('Previsão de Sobrevivência Titanic')
 st.write("Preencha os dados abaixo para prever a sobrevivência no Titanic")
 
+# Formulário de entrada do usuário
 user_data = user_input_features()
 
+# Botão de previsão
 if st.button('Prever'):
     result = predict_survival(user_data)
     if result == 1:
         st.success("Sobreviveu")
     else:
         st.error("Não Sobreviveu")
+
+# Adicionar uma linha divisória
+st.markdown("---")
+
+# Exibir gráficos no final da interface
+st.subheader("Análise Gráfica dos Dados")
+st.write("Gráficos gerados com base no conjunto de dados de treino.")
+
+# Gráfico: Sobrevivência por classe
+fig = plot_survival_by_class()
+st.pyplot(fig)
+
+# Gráfico: Sobrevivência por sexo
+fig = plot_survival_by_sex()
+st.pyplot(fig)
+
+# Gráfico: Classe vs Local de embarque
+fig = plot_class_vs_embarked()
+st.pyplot(fig)
