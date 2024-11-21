@@ -16,7 +16,7 @@ with open('model/titanic_model.pkl', 'rb') as file:
     model = pickle.load(file)
 
 # Carregar o escalador treinado
-with open('model/scaler.pkl', 'rb') as file:
+with open('scaler.pkl', 'rb') as file:
     scaler = pickle.load(file)
 
 # Função para receber dados do usuário
