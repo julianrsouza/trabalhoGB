@@ -46,7 +46,7 @@ def predict_survival(input_data):
     input_data = input_data[features]
     
     # Normalizando os dados (aplicando o scaler da mesma maneira que foi feito durante o treino)
-    input_data_scaled = scaler.transform(input_data)  # 'transform' em vez de 'fit_transform'
+    input_data_scaled = scaler.transform(input_data) 
     
     # Realizando a previsão
     prediction = model.predict(input_data_scaled)
